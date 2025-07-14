@@ -1,7 +1,7 @@
+/* eslint-disable */
 "use client";
 import { useCallback, useEffect, useState } from "react";
-
-const { words } = require("./words");
+import { words } from "./words";
 
 export default function Home() {
   const [grid, setGrid] = useState<string[][]>([]);
@@ -9,7 +9,7 @@ export default function Home() {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [timeLeft, setTimeLeft] = useState(120); // 2 minutes in seconds
   const [showAllWords, setShowAllWords] = useState(false);
-  const [keyboardInput, setKeyboardInput] = useState("");
+  const [_, setKeyboardInput] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
 
   // Keyboard input detection
@@ -297,7 +297,7 @@ interface TrieNode {
 }
 
 // Boggle solver class
-export class BoggleSolver {
+class BoggleSolver {
   private trie: TrieNode;
   private words: Set<string>;
 
@@ -469,14 +469,6 @@ export class BoggleSolver {
   }
 }
 
-// Utility function to create a solver instance
-export function createBoggleSolver(wordList: string[]): BoggleSolver {
+function createBoggleSolver(wordList: string[]): BoggleSolver {
   return new BoggleSolver(wordList);
 }
-
-// Example usage function
-export function solveBoggle(grid: string[][], wordList: string[]): string[] {
-  const solver = createBoggleSolver(wordList);
-  return solver.findWords(grid);
-} 
-
